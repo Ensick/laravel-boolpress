@@ -1908,11 +1908,13 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* import { defineComponent } from '@vue/composition-api' */
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'components/WorkInProgress.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
-  components: {}
+  components: {
+    WorkInProgress: !(function webpackMissingModule() { var e = new Error("Cannot find module 'components/WorkInProgress.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+  }
 });
 
 /***/ }),
@@ -1931,13 +1933,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", [_c("WorkInProgress")], 1);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("h1", [_vm._v("\n        Work in progress\n    ")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
