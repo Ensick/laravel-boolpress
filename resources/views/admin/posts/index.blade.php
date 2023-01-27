@@ -15,6 +15,7 @@
             <th scope="col">TITOLO</th>
             <th scope="col">TESTO</th>
             <th scope="col">CATEGORIA</th>
+            <th scope="col">TIPO</th>
             <th scope="col">EDIT</th>
           </tr>
         </thead>
@@ -22,17 +23,30 @@
             @foreach ($posts as $post)
                 <tr>
                     <td>{{$post->id}}</td>
+
                     <td>
                         <a href="{{'admin.posts.show',$post->id}}">
                             {{$post->title}}
                         </a>
                     </td>
+
                     <td>{{$post->body}}</td>
+
                     <td>
                         @if($post->category)
                             {{$post->category['name']}}
                         @endif
                     </td>
+
+                    <td>
+                        @foreach ($post->tags as $tag)
+
+                        {{$tag->name}}
+
+                        @endforeach
+
+                    </td>
+
                     <td>
                         <a href="{{route('admin.posts.edit',$post->id)}}">
                             <button class="btn btn-primary mb-3">

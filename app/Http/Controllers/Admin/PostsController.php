@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\Category;
 
 class PostsController extends Controller
@@ -18,7 +19,7 @@ class PostsController extends Controller
     {
         $data = [
 
-            'posts' => Post::with('category')->paginate(10)
+            'posts' => Post::with('category','tags')->paginate(10)
 
         ];
 
@@ -32,11 +33,13 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $data =[
-            'categories' => Category::All()
-        ];
 
-        return view('admin.posts.create', $data);
+        $categories = Category::All();
+
+        $tags = Tag::All();
+
+
+        return view('admin.posts.create', compact('categories','tags'));
     }
 
     /**
@@ -60,7 +63,12 @@ class PostsController extends Controller
         $newPost->fill($data);
         $newPost->save();
 
-        return redirect()->route('admin.posts.index');
+        if( array_key_exists('tags',$data)){
+
+            $newPost->tags()->sync($data['tags']);
+        }
+
+        return redirect()->route('admin.posts.index',$newPost->id);
     }
 
     /**
@@ -86,8 +94,9 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::All();
+        $tags = Tag::All();
 
-        return view('admin.posts.edit', compact('post','categories'));
+        return view('admin.posts.edit', compact('post','categories', 'tags'));
     }
 
     /**
@@ -104,6 +113,14 @@ class PostsController extends Controller
 
         $singoloPost->update($data);
 
+        if(array_key_exists('tags', $data)){
+
+            $singoloPost->tags()->sync($data['tags']);
+        }else{
+
+            $singoloPost->tags()->sync([]);
+        }
+
         return redirect()->route('admin.posts.show',$singoloPost->id);
     }
 
@@ -115,7 +132,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $singoloPost= Post::findOrFail($id);
+        $singoloPost = Post::findOrFail($id);
+        $singoloPost->tags()->sync([]);
         $singoloPost->delete();
         return redirect()->route('admin.posts.index');
     }
