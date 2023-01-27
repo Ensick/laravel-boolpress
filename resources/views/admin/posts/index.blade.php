@@ -14,6 +14,7 @@
             <th scope="col">ID</th>
             <th scope="col">TITOLO</th>
             <th scope="col">TESTO</th>
+            <th scope="col">CATEGORIA</th>
             <th scope="col">EDIT</th>
           </tr>
         </thead>
@@ -27,6 +28,11 @@
                         </a>
                     </td>
                     <td>{{$post->body}}</td>
+                    <td>
+                        @if($post->category)
+                            {{$post->category['name']}}
+                        @endif
+                    </td>
                     <td>
                         <a href="{{route('admin.posts.edit',$post->id)}}">
                             <button class="btn btn-primary mb-3">

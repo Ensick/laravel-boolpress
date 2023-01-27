@@ -18,7 +18,7 @@ class PostsController extends Controller
     {
         $data = [
 
-            'posts' => Post::paginate(10)
+            'posts' => Post::with('category')->paginate(10)
 
         ];
 
@@ -85,7 +85,9 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::All();
+
+        return view('admin.posts.edit', compact('post','categories'));
     }
 
     /**
