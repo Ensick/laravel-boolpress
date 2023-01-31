@@ -66,7 +66,7 @@
     {{-- Aggiunta immagine --}}
 
     <div class="my-3">
-        <label for="">Aggiunta cover immagine</label>
+        <label>Aggiunta cover immagine</label>
         <input type="file" name="image" class="form-control-file">
     </div>
 

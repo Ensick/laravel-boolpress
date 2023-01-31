@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\CreatePostMail;
 use App\Post;
 use App\Tag;
 use App\Category;
-use Illuminate\Support\Facades\Storage;
 class PostsController extends Controller
 {
     /**
@@ -76,6 +78,12 @@ class PostsController extends Controller
 
             $newPost->tags()->sync($data['tags']);
         }
+
+        $mail = new CreatePostMail($newPost);
+
+        $email_utente = Auth::user()->email;
+
+        Mail::to($email_utente)->send($mail);
 
         return redirect()->route('admin.posts.index',$newPost->id);
     }
