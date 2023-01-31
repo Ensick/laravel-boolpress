@@ -9,7 +9,7 @@
 </div>
 
 
-<form action="{{route('admin.posts.store')}}" method="POST">
+<form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -61,6 +61,13 @@
 
         @endforeach
 
+    </div>
+
+    {{-- Aggiunta immagine --}}
+
+    <div class="my-3">
+        <label for="">Aggiunta cover immagine</label>
+        <input type="file" name="image" class="form-control-file">
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Crea</button>
