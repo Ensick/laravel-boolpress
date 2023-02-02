@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div id="root">
+    <div id="root">
 
 
 
-</div>
+    </div>
 
 @endsection

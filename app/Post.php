@@ -8,8 +8,11 @@ class Post extends Model
 {
     protected $fillable = [
 
-        'title',
-        'body',
+        'nome',
+        'ingredienti',
+        'descrizione',
+        'difficolta',
+        'tempo_cottura',
         'category_id',
         'cover'
     ];

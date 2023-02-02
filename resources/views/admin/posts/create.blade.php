@@ -14,9 +14,9 @@
     @csrf
 
     <div>
-        <label class="form-label"></label>
-        <input class="form-control" type="text" name="title">
-        @error('title')
+        <label class="form-label">Nome</label>
+        <input class="form-control" type="text" name="nome">
+        @error('nome')
             <div class="alert alert-danger">
                 {{$message}}
             </div>
@@ -24,9 +24,39 @@
     </div>
 
     <div>
-        <label for=""></label>
-        <textarea class="form-control" name="body"></textarea>
-        @error('body')
+        <label for="">Ingredienti</label>
+        <input value="" class="form-control" type="text" name="ingredienti">
+        @error('ingredienti')
+            <div class="alert alert-danger">
+                {{$message}}
+            </div>
+        @enderror
+    </div>
+
+    <div>
+        <label for="">Descrizione</label>
+        <textarea class="form-control" name="descrizione"></textarea>
+        @error('descrizione')
+            <div class="alert alert-danger">
+                {{$message}}
+            </div>
+        @enderror
+    </div>
+
+    <div>
+        <label for="">Difficoltà</label>
+        <input value="" class="form-control" type="text" name="difficolta">
+        @error('difficolta')
+            <div class="alert alert-danger">
+                {{$message}}
+            </div>
+        @enderror
+    </div>
+
+    <div>
+        <label for="">Tempo di Cottura</label>
+        <input value="" class="form-control" type="text" name="tempo_cottura">
+        @error('tempo_cottura')
             <div class="alert alert-danger">
                 {{$message}}
             </div>

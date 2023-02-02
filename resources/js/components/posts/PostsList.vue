@@ -11,7 +11,12 @@
         <ul v-else-if="posts.length">
 
             <li v-for="elem in posts" :key="elem.id">
-                {{elem.title}}
+
+                <router-link :to="{name : 'singoloPost', params: elem.id}">
+
+                    {{elem.title}}
+
+                </router-link>
 
                 <span v-if="elem.category">
 

@@ -2,11 +2,11 @@
 
     <div>
 
-        <!-- header navigazione -->
+        <h1>Pagina singolo post</h1>
 
-        <Header/>
+        <!-- componente post card -->
 
-       <router-view></router-view>
+        <PostCard/>
 
     </div>
 
@@ -14,15 +14,17 @@
 
 <script>
 
-import Header from '../components/Header.vue'
+import PostCard from '../posts/PostCard.vue'
 
 export default {
 
-    name:'App',
+    name:'PostShow',
 
     components: {
 
-        Header,
+        PostCard,
+
+
     },
 
     data(){
@@ -48,5 +50,6 @@ export default {
 
 
 }
-</script>
 
+
+</script>

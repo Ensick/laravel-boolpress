@@ -1,12 +1,9 @@
+
 <template>
 
     <div>
 
-        <!-- header navigazione -->
-
-        <Header/>
-
-       <router-view></router-view>
+        <PostsList/>
 
     </div>
 
@@ -14,15 +11,15 @@
 
 <script>
 
-import Header from '../components/Header.vue'
+import PostsList from '../../../components/posts/PostsList.vue'
 
 export default {
 
-    name:'App',
+    name: 'Posts',
 
     components: {
 
-        Header,
+        PostsList,
     },
 
     data(){
@@ -46,7 +43,7 @@ export default {
 
     },
 
-
 }
-</script>
 
+
+</script>

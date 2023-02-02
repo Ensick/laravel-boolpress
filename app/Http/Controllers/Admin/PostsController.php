@@ -57,8 +57,8 @@ class PostsController extends Controller
         //Validazione
 
         $request->validate([
-            'title' => 'required',
-            'body' => 'required'
+            'nome' => 'required',
+            'ingredienti' => 'required'
         ]);
 
         $newPost = new Post();
@@ -127,6 +127,12 @@ class PostsController extends Controller
     {
         $data = $request->all();
         $singoloPost = Post::findOrFail($id);
+
+        if( array_key_exists('image',$data)){
+
+            $cover_url = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_url;
+        }
 
         $singoloPost->update($data);
 

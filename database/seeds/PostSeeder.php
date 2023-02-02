@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use App\Post;
 use Faker\Generator as Faker;
 
+include 'config/post.php';
+
 class PostSeeder extends Seeder
 {
     /**
@@ -11,14 +13,30 @@ class PostSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        for($i = 0; $i < 100; $i++){
+
+        $arrayPosts = config('post');
+
+        foreach($arrayPosts as $post){
+
+            $newPost = new Post();
+            $newPost->nome = $post['nome'];
+            $newPost->ingredienti = $post['ingredienti'];
+            $newPost->descrizione = $post['descrizione'];
+            $newPost->difficolta = $post['difficolta'];
+            $newPost->tempo_cottura = $post['tempo_cottura'];
+            $newPost->save();
+
+        }
+
+
+        /* for($i = 0; $i < 100; $i++){
 
             $newPost = new Post();
             $newPost->title = $faker->words(5,true);
             $newPost->body = $faker->text();
             $newPost->save();
-        }
+        } */
     }
 }

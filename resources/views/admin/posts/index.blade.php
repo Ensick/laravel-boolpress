@@ -8,68 +8,73 @@
         </button>
     </a>
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">TITOLO</th>
-            <th scope="col">TESTO</th>
-            <th scope="col">CATEGORIA</th>
-            <th scope="col">TIPO</th>
-            <th scope="col">EDIT</th>
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($posts as $post)
-                <tr>
-                    <td>{{$post->id}}</td>
+    @foreach ($posts as $post)
 
-                    <td>
-                        <a href="{{'admin.posts.show',$post->id}}">
-                            {{$post->title}}
-                        </a>
-                    </td>
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
 
-                    <td>{{$post->body}}</td>
 
-                    <td>
+                <h4 class="text-primary">
+                    <a class="text-decoration-none" href="{{route('admin.posts.show',$post->id)}}">
+                        {{$post->nome}}
+                    </a>
+                </h4>
+
+                <div>
+                    <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <div>
+                            <div>
+                                <a class="btn btn-secondary" href="{{route('admin.posts.show',$post->id)}}">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+
+                                <a class="btn btn-primary" href="{{route('admin.posts.edit',$post->id)}}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div class="d-flex row-cols-2" style="height: 350px;">
+                    <div class="pb-3 pe-3 overflow-auto">
+                        <h5>Ingredienti</h5>
+                        <p class="card-text">{{$post->ingredienti}}</p>
+                        <h5>Descrizione</h5>
+                        <p class="card-text">{{$post->descrizione}}</p>
+                        <h5>Difficoltà</h5>
+                        <p class="card-text">{{$post->difficolta}}</p>
+                        <h5>Tempo di cottura</h5>
+                        <p class="card-text">{{$post->tempo_cottura}}</p>
+                        <h5>Portata</h5>
                         @if($post->category)
-                            {{$post->category['name']}}
+                            <p>{{$post->category['name']}}</p>
                         @endif
-                    </td>
-
-                    <td>
+                        <h5>Tipologia</h5>
                         @foreach ($post->tags as $tag)
-
-                        {{$tag->name}}
-
+                            <p>{{$tag->name}}</p>
                         @endforeach
 
-                    </td>
+                    </div>
 
-                    <td>
-                        <a href="{{route('admin.posts.edit',$post->id)}}">
-                            <button class="btn btn-primary mb-3">
-                                Modifica
-                            </button>
-                        </a>
+                    <div class="ratio" style="--bs-aspect-ratio: 50%;">
+                        <img class="object-fit-md-cover border rounded" src="{{asset("storage/$post->cover")}}" alt="img">
+                    </div>
 
-                        <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
-
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class="btn btn-danger">
-                                Elimina
-                            </button>
-
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-      </table>
-
+                </div>
+            </div>
+        </div>
+    @endforeach
 
     {{$posts->links()}}
 
