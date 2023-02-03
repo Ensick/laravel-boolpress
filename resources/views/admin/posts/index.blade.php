@@ -3,8 +3,8 @@
 @section('content')
 
     <a href="{{route('admin.posts.create')}}">
-        <button class="btn btn-success mb-3">
-            Crea Nuovo Post
+        <button class="btn btn-success mb-4">
+            <i class="fa-solid fa-plus"></i>
         </button>
     </a>
 
@@ -28,10 +28,6 @@
 
                         <div>
                             <div>
-                                <a class="btn btn-secondary" href="{{route('admin.posts.show',$post->id)}}">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-
                                 <a class="btn btn-primary" href="{{route('admin.posts.edit',$post->id)}}">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
@@ -54,7 +50,7 @@
                         <p class="card-text">{{$post->descrizione}}</p>
                         <h5>Difficoltà</h5>
                         <p class="card-text">{{$post->difficolta}}</p>
-                        <h5>Tempo di cottura</h5>
+                        <h5>Tempo di preparazione</h5>
                         <p class="card-text">{{$post->tempo_cottura}}</p>
                         <h5>Portata</h5>
                         @if($post->category)

@@ -16,6 +16,9 @@ import HomePage from './views/pages/HomePage.vue'
 
 import PostShow from './views/pages/posts/PostShow.vue'
 
+import TagsIndex from './views/pages/tags/TagsIndex.vue'
+
+import TagShow from './views/pages/tags/TagShow.vue'
 
 const router = new VueRouter({
 
@@ -47,6 +50,18 @@ const router = new VueRouter({
             path:'/posts/:id',
             name: 'singlePost',
             component: PostShow
+        },
+
+        {
+            path:'/tags',
+            name: 'tags',
+            component: TagsIndex
+        },
+
+        {
+            path:'/tags/:name',
+            name: 'singletag',
+            component: TagShow
         },
 
     ]

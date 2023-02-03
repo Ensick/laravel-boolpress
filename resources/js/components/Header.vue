@@ -23,6 +23,11 @@
                             <router-link class="nav-link" :to="'/about-us'">About Us</router-link>
                         </li>
 
+
+                        <li class="nav-item">
+                            <router-link class="nav-link" :to="'/tags'">Tags</router-link>
+                        </li>
+
                     </ul>
                 </div>
             </div>

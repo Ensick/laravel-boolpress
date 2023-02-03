@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+
     return $request->user();
+
 });
 
 /* Route::get('/posts', 'Api\PostController@index'); */
@@ -25,4 +27,20 @@ Route::namespace('Api')->prefix('/posts')->group(function(){
     Route::get('/', 'PostController@index');
 
     Route::get('/{id}', 'PostController@show');
+});
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+
+    return $request->user();
+
+});
+
+/* Route::get('/tags', 'Api\PostController@index'); */
+
+Route::namespace('Api')->prefix('/tags')->group(function(){
+
+    Route::get('/', 'TagsController@index');
+
+    Route::get('/{name}', 'TagsController@show');
+
 });

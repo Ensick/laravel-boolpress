@@ -14,7 +14,7 @@
 
 <script>
 
-import PostCard from '../posts/PostCard.vue'
+import PostCard from '../../../components/posts/PostCard.vue'
 
 export default {
 

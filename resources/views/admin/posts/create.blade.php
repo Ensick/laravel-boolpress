@@ -4,7 +4,7 @@
 
 <div>
     <h1>
-        Crea un post
+        Crea una nuova ricetta!
     </h1>
 </div>
 
